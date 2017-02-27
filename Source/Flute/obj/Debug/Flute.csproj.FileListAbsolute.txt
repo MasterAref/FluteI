@@ -1,1 +1,6 @@
 E:\GitRep\Flute\Strategy\Source\Flute\bin\Debug\Flute.exe.config
+E:\GitRep\Flute\Strategy\Source\Flute\bin\Debug\Flute.exe
+E:\GitRep\Flute\Strategy\Source\Flute\bin\Debug\Flute.pdb
+E:\GitRep\Flute\Strategy\Source\Flute\obj\Debug\Flute.csprojResolveAssemblyReference.cache
+E:\GitRep\Flute\Strategy\Source\Flute\obj\Debug\Flute.exe
+E:\GitRep\Flute\Strategy\Source\Flute\obj\Debug\Flute.pdb
