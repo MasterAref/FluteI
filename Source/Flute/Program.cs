@@ -158,13 +158,16 @@ namespace Flute
          this._dataStream = downloadedStream;
       }
 
-      private void SaveAsFile()
+      private bool SaveAsFile()
       {
          string fullPath = _sourceObj.saveTo + _sourceObj.name + _sourceObj.extension;
          using (FileStream fs = File.Create(fullPath))
          {
             _dataStream.CopyTo(fs);
          }
+
+         if (!File.Exists(fullPath)) return false;
+         return true;
       }
    }
 }
