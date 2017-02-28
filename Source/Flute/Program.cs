@@ -71,4 +71,9 @@ namespace Flute
       public string roleTag { get; set; }
       public string hostTag { get; set; }
    }
+
+   class WebPageSourceProperties : SourceProperties
+   {
+      public string extension { get; set; }
+   }
 }
