@@ -28,7 +28,7 @@ namespace Flute
    /// <summary>
    /// Saving downloaded source as a file.
    /// </summary>
-   interface ISourceSaving
+   interface IStreamSaving
    {
       //TODO: Implement
    }
@@ -130,7 +130,7 @@ namespace Flute
       }
    }
 
-   class StreamSaving : ISourceSaving
+   class StreamSaving : IStreamSaving
    {
       private SourceProperties _sourceObj;
       private Stream _dataStream;
