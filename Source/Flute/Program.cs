@@ -54,4 +54,13 @@ namespace Flute
    {
       //TODO: Implement
    }
+
+   abstract class SourceProperties
+   {
+      public string name { get; set; }
+      public string saveTo { get; set; }
+      public string host { get; set; }
+      public string fullUrl { get; set; }
+      public string relativeUrl { get; set; }
+   }
 }
