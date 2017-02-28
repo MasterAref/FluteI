@@ -64,11 +64,11 @@ namespace Flute
       public string host { get; set; }
       public string fullUrl { get; set; }
       public string relativeUrl { get; set; }
+      public string extension { get; set; }
    }
 
    class Mp3SourceProperties : SourceProperties
    {
-      public string extension { get; set; }
       public string grammerRole { get; set; }
       public string roleTag { get; set; }
       public string hostTag { get; set; }
@@ -76,7 +76,6 @@ namespace Flute
 
    class WebPageSourceProperties : SourceProperties
    {
-      public string extension { get; set; }
    }
 
    class Mp3Downloading : ISourceDownloading
