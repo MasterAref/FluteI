@@ -63,4 +63,12 @@ namespace Flute
       public string fullUrl { get; set; }
       public string relativeUrl { get; set; }
    }
+
+   class Mp3SourceProperties : SourceProperties
+   {
+      public string extension { get; set; }
+      public string grammerRole { get; set; }
+      public string roleTag { get; set; }
+      public string hostTag { get; set; }
+   }
 }
