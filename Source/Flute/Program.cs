@@ -105,4 +105,29 @@ namespace Flute
 
 
    }
+
+   class WebpageDownloading : ISourceDownloading
+   {
+      private SourceProperties _sourceObj;
+
+      public WebpageDownloading(SourceProperties objectToDownload)
+      {
+         this._sourceObj = objectToDownload;
+
+         if (_sourceObj.fullUrl == null)
+         {
+            Console.Write($"ERROR @WebpageDownloading: No URL found!");
+            return;
+         }
+      }
+
+      public Stream Download()
+      {
+         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_sourceObj.fullUrl);
+         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+         Stream responseStream = response.GetResponseStream();
+
+         return responseStream;
+      }
+   }
 }
