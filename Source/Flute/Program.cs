@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,5 +77,32 @@ namespace Flute
    class WebPageSourceProperties : SourceProperties
    {
       public string extension { get; set; }
+   }
+
+   class Mp3Downloading : ISourceDownloading
+   {
+      private SourceProperties _sourceObj;
+
+      public Mp3Downloading(SourceProperties objectToDownload)
+      {
+         this._sourceObj = objectToDownload;
+
+         if (_sourceObj.fullUrl == null)
+         {
+            Console.Write($"ERROR @Mp3Downloading: No URL found!");
+            return;
+         }
+      }
+
+      public Stream Download()
+      {
+         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_sourceObj.fullUrl);
+         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+         Stream responseStream = response.GetResponseStream();
+
+         return responseStream;
+      }
+
+
    }
 }
