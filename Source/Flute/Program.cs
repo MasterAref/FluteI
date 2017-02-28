@@ -129,4 +129,42 @@ namespace Flute
          return responseStream;
       }
    }
+
+   class StreamSaving : ISourceSaving
+   {
+      private SourceProperties _sourceObj;
+      private Stream _dataStream;
+
+      public StreamSaving(Stream downloadedStream, SourceProperties objectToSave)
+      {
+         if (objectToSave == null || downloadedStream == null) return;
+
+         if (String.IsNullOrEmpty(_sourceObj.name))
+         {
+            Console.WriteLine("ERROR @MP3FileSaving: Something not right. File NAME not set.");
+            return;
+         }
+         if (String.IsNullOrEmpty(_sourceObj.saveTo))
+         {
+            Console.WriteLine("ERROR @MP3FileSaving: Something not right. file PATH not set.");
+            return;
+         }
+         if (String.IsNullOrEmpty(_sourceObj.extension))
+         {
+            Console.WriteLine("ERROR @MP3FileSaving: Something not right. file EXTENSION not set.");
+            return;
+         }
+         this._sourceObj = objectToSave;
+         this._dataStream = downloadedStream;
+      }
+
+      private void SaveAsFile()
+      {
+         string fullPath = _sourceObj.saveTo + _sourceObj.name + _sourceObj.extension;
+         using (FileStream fs = File.Create(fullPath))
+         {
+            _dataStream.CopyTo(fs);
+         }
+      }
+   }
 }
