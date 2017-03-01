@@ -47,7 +47,78 @@ namespace Flute
    /// </summary>
    abstract class UserConfiguration
    {
-      //TODO: Implement
+      private string configPath { get; set; }
+
+      /// <summary>
+      /// Instantiate 'configPath' property.
+      /// </summary>
+      public UserConfiguration()
+      {
+         if (IsDefConfigExist())
+         {
+            Console.WriteLine("Configuration file found!");
+         }
+         else
+         {
+            string tempUserCmd = "";
+            do
+            {
+               if (tempUserCmd == "")
+               {
+                  Console.WriteLine("Can not find config.cfg file!You have 2 option:\n" +
+                                    "Type path of existing *.cfg file.\n" +
+                                    "type 'C' to create new one.");
+                  //TODO: Can be send to utility method just for showing messages!
+               }
+               else
+               {
+                  Console.WriteLine(new string('-', 10));
+                  Console.WriteLine("We can not find anything, yet! Try again or type 'C' for create new cfg file.");
+               }
+               tempUserCmd = Console.ReadLine().ToLower();
+            } while (tempUserCmd != "c" && !IsConfigExist(tempUserCmd));
+
+
+            //   NOTE: Going out of loop means Either
+            //1.user entered 'c' to create new config file.
+            //2.We found new config file.
+            if (tempUserCmd == "c")
+            {
+               //TODO: Call method to create new config.
+            }
+            else
+            {
+               // JUST A NOTIFICATION.
+               Console.WriteLine("We found your config file.");
+            }
+         }
+
+         // 'configPath' CHECKING TO BE SET.
+         if (string.IsNullOrEmpty(configPath))
+         {
+            //TODO: throw an ERROR
+         }
+      }
+
+      private bool IsDefConfigExist()
+      {
+         if (File.Exists($"{Environment.CurrentDirectory}\\config.cfg") == true)
+         {
+            configPath = Environment.CurrentDirectory + "\\config.cfg";
+            return true;
+         }
+         return false;
+      }
+
+      public bool IsConfigExist(string path)
+      {
+         if (File.Exists(path) == true)
+         {
+            configPath = path;
+            return true;
+         }
+         return false;
+      }
    }
 
    /// <summary>
@@ -197,5 +268,10 @@ namespace Flute
          //TODO: check if string is null/empty 
          return data;
       }
+   }
+
+   class CfgConfiguration : UserConfiguration
+   {
+      //TODO: Implement
    }
 }
