@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -169,5 +170,20 @@ namespace Flute
          if (!File.Exists(fullPath)) return false;
          return true;
       }
+   }
+
+   class ClipboardMagnet : ILinkMagnet
+   {
+      [DllImport("User32.dll")]
+      private static extern bool OpenClipboard(IntPtr hWndNewOwner);
+
+      [DllImport("User32.dll")]
+      private static extern IntPtr GetClipboardData(uint uFormat);
+
+      [DllImport("User32.dll")]
+      private static extern bool EmptyClipboard();
+
+      [DllImport("User32.dll")]
+      private static extern bool CloseClipboard();
    }
 }
