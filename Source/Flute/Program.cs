@@ -13,7 +13,7 @@ namespace Flute
    {
       static void Main(string[] args)
       {
-
+         
          Console.ReadLine();
       }
    }
@@ -185,5 +185,17 @@ namespace Flute
 
       [DllImport("User32.dll")]
       private static extern bool CloseClipboard();
+
+      public string CopyLink()
+      {
+         OpenClipboard(IntPtr.Zero);
+         string data = Marshal.PtrToStringAuto(GetClipboardData(13));
+
+         CloseClipboard();
+         //CAUTION: if not closing clipboard while program is running, other program can not copy anything into clipboard.
+
+         //TODO: check if string is null/empty 
+         return data;
+      }
    }
 }
