@@ -36,7 +36,7 @@ namespace Flute
    /// <summary>
    /// Get link copied into clipboard.
    /// </summary>
-   interface ILinkMagnetor
+   interface ILinkMagnet
    {
       //TODO: Implement 
    }
