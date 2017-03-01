@@ -45,7 +45,7 @@ namespace Flute
    /// <summary>
    /// Handling *.cfg file.
    /// </summary>
-   interface IUserConfiguration
+   abstract class UserConfiguration
    {
       //TODO: Implement
    }
