@@ -49,6 +49,13 @@ namespace Flute
    {
       private string configPath { get; set; }
       private ConfigObject _configObject;
+      private Dictionary<string, string> cfgSettingsDictionary = new Dictionary<string, string>()
+      {
+         ["sources"] = "",
+         ["sourcesTag"] = "",
+         ["rolesTag"] = "",
+         ["saveTo"] = ""
+      };
 
       /// <summary>
       /// Instantiate 'configPath' property.
@@ -119,6 +126,27 @@ namespace Flute
             return true;
          }
          return false;
+      }
+
+      public void ReadConfig()
+      {
+         string[] configlines = File.ReadAllLines(configPath);
+
+         foreach (var line in configlines)
+         {
+            string currentLine = line.Replace(" ", String.Empty);
+            string lineKey = currentLine.Remove(currentLine.IndexOf(':'));
+            string lineValue = currentLine.Remove(0, currentLine.IndexOf(':') + 1);
+
+            if (cfgSettingsDictionary.ContainsKey(lineKey))
+            {
+               cfgSettingsDictionary[lineKey] = lineValue;
+            }
+            else
+            {
+               //TODO: Maybe add other lines (which are unofficial) to another dictionary  & use it someHow!!!
+            }
+         }
       }
    }
 
