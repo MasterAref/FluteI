@@ -148,6 +148,42 @@ namespace Flute
             }
          }
       }
+
+      /// <summary>
+      /// Assigning value to ConfigObject.sources
+      /// </summary>
+      private void AssignSources()
+      {
+         if (cfgSettingsDictionary == null) return;
+         //TODO: Show/Throw ERROR!
+
+         if (!cfgSettingsDictionary.ContainsKey("sources")) return;
+         //TODO: Show/Throw ERROR!
+
+         string[] sources = cfgSettingsDictionary["sources"].Split(',');
+         foreach (var source in sources)
+         {
+            _configObject.SourcesDictionary.Add(FindSourceName(source), source);
+         }
+      }
+
+      private string FindSourceName(string sourceUrl)
+      {
+         if (sourceUrl.Contains("https://"))
+         {
+            sourceUrl = sourceUrl.Substring("https://".Length);
+         }
+         if (sourceUrl.Contains("http://"))
+         {
+            sourceUrl = sourceUrl.Substring("http://".Length);
+         }
+         if (sourceUrl.Contains("www."))
+         {
+            sourceUrl = sourceUrl.Substring("www.".Length);
+         }
+         sourceUrl = sourceUrl.Substring(0, sourceUrl.IndexOf("."));
+         return sourceUrl;
+      }
    }
 
    abstract class ConfigObject
