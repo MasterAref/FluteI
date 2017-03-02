@@ -13,7 +13,7 @@ namespace Flute
    {
       static void Main(string[] args)
       {
-         
+
          Console.ReadLine();
       }
    }
@@ -48,6 +48,7 @@ namespace Flute
    abstract class UserConfiguration
    {
       private string configPath { get; set; }
+      private ConfigObject _configObject;
 
       /// <summary>
       /// Instantiate 'configPath' property.
@@ -119,6 +120,15 @@ namespace Flute
          }
          return false;
       }
+   }
+
+   abstract class ConfigObject
+   {
+      public Dictionary<string, string> SourcesDictionary { get; set; }
+      public Dictionary<string, string> SourcesTagDictionary { get; set; }
+      public Dictionary<string, string> RolesTagDictionary { get; set; }
+      public string saveTo { get; set; }
+
    }
 
    /// <summary>
